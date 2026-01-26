@@ -33,5 +33,6 @@ map('n', 'L', '$', { desc = 'Move to the very right border' })
 map('v', 'L', 'g_', { desc = 'Move to the very right border' })
 map('n', 'U', 'i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w', { desc = 'Split lines' })
 
+map('n', '<Leader>tb', ':Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle inline git blame' })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
