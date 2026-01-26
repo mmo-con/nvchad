@@ -8,6 +8,7 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.shell = 'zsh'
 
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
