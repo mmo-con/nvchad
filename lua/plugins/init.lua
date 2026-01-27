@@ -13,6 +13,8 @@ return {
     end,
   },
 
+  { "nvim-mini/mini.nvim", version = "*" },
+
   {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
