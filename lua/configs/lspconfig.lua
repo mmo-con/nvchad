@@ -23,7 +23,39 @@ vim.diagnostic.config {
 vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
-    vim.lsp.inlay_hint.enable(true)
+
+    -- Toggle inlay hints
+    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+    local function toggle_inlay_hints(bufnr, client)
+      if not (client and client.server_capabilities and client.server_capabilities.inlayHintProvider) then
+        print "no inlay hints available"
+        return
+      end
+
+      local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }
+      vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+    end
+
+    --- Toggle diagnostics
+    vim.g.diagnostics_visible = true
+    local function toggle_diagnostics(bufnr, client)
+      if vim.g.diagnostics_visible then
+        vim.g.diagnostics_visible = false
+        vim.diagnostic.enable(false, { bufnr = bufnr })
+      else
+        vim.g.diagnostics_visible = true
+        vim.diagnostic.enable(true, { bufnr = bufnr })
+      end
+    end
+
+    vim.keymap.set("n", "<leader>di", function()
+      toggle_inlay_hints(bufnr, client)
+    end, { noremap = true, silent = true, buffer = bufnr, desc = "✨lsp toggle inlay hints" })
+
+    vim.keymap.set("n", "<leader>dd", function()
+      toggle_diagnostics(bufnr, client)
+    end, { noremap = true, silent = true, buffer = bufnr, desc = "✨lsp toggle diagnostics" })
+
     on_attach(client, bufnr)
   end,
   on_init = on_init,
@@ -46,3 +78,4 @@ vim.lsp.config("clangd", {
 })
 
 vim.lsp.enable "clangd"
+
