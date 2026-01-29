@@ -16,6 +16,22 @@ return {
   { "nvim-mini/mini.nvim", version = "*" },
 
   {
+    "chrisgrieser/nvim-rip-substitute",
+    cmd = "RipSubstitute",
+    opts = {},
+    keys = {
+      {
+        "<leader>fs",
+        function()
+          require("rip-substitute").sub()
+        end,
+        mode = { "n", "x" },
+        desc = " rip substitute",
+      },
+    },
+  },
+
+  {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
 
