@@ -77,5 +77,21 @@ vim.lsp.config("clangd", {
   },
 })
 
-vim.lsp.enable "clangd"
+vim.lsp.config("lua_ls", {
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } },
+      workspace = {
+        checkThirdParty = false,
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = { enable = false },
+    },
+  },
+})
+
+vim.lsp.enable({"clangd", "lua_ls"})
 
