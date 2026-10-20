@@ -35,3 +35,9 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+if vim.g.vscode then
+  vim.opt.showmode = true
+  vim.opt.statusline = ""
+  return
+end
