@@ -93,5 +93,11 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.enable({"clangd", "lua_ls"})
+vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_markers = { 'go.work', 'go.mod', '.git' },
+})
+
+vim.lsp.enable({"clangd", "lua_ls", "gopls"})
 
